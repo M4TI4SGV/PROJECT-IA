@@ -64,7 +64,7 @@ busquedaEnAnchura([CaminoActual | OtrosCaminos], Solucion) :-
 
 extend([Nodo | Camino], NuevosCaminos) :-
     findall([NuevoNodo, Nodo | Camino],
-            (entre_espacios(Nodo, NuevoNodo), \+ member(NuevoNodo, Camino)),
+            (entre_espacios(Nodo, NuevoNodo), \+ member(NuevoNodo, Camino)), 
             NuevosCaminos).
 
 % Mover el robot según el camino encontrado
