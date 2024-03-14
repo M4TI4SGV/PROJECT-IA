@@ -50,17 +50,17 @@ resolver_problema :-
 
 % Heurística y Búsqueda
 heuristica(Inicio, Camino, Longitud) :-
-    busquedaEnAnchura([[Inicio]], CaminoReverso),
+    busquedaBestFirst([[Inicio]], CaminoReverso),
     reverse(CaminoReverso, Camino),
     length(Camino, Longitud).
 
-busquedaEnAnchura([[Nodo | Camino] | _], [Nodo | Camino]) :-
+busquedaBestFirst([[Nodo | Camino] | _], [Nodo | Camino]) :-
     objetivo(Nodo).
 
-busquedaEnAnchura([CaminoActual | OtrosCaminos], Solucion) :-
+busquedaBestFirst([CaminoActual | OtrosCaminos], Solucion) :-
     extend(CaminoActual, NuevosCaminos),
     append(OtrosCaminos, NuevosCaminos, CaminosTotales),
-    busquedaEnAnchura(CaminosTotales, Solucion).
+    busquedaBestFirst(CaminosTotales, Solucion).
 
 extend([Nodo | Camino], NuevosCaminos) :-
     findall([NuevoNodo, Nodo | Camino],
